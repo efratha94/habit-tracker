@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from "axios"
-import { UserContext } from "../../utils/UserContext"
+import { UserContext } from "../../Utils/UserContext"
 
 const SignIn = () => {
 
@@ -18,10 +18,6 @@ const SignIn = () => {
             
             e.preventDefault();
             await axios.post("http://localhost:3001/signInUser", { username, password })
-            
-            // if (error) setError('') ;
-            // setUsername('')
-            // setPassword('')
             setLogin(true)
             history.push(`/dashboard/${username}`)
 

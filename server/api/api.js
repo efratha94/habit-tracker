@@ -23,13 +23,13 @@ router.post("/signInUser", async (req, res) => {
 
     try {
         let doesUserExist = await User.findOne({ username: req.body.username, password: req.body.password })
-        // console.log("doesUserExist", doesUserExist)
         if (doesUserExist === null) {
             throw new Error("User doesn't exist")
         } else {
             res.status(200).send("OK")
         }
     } catch (err) {
+        //should refine it
         res.status(400).send(err.message)
     }
 })

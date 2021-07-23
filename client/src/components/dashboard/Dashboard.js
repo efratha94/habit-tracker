@@ -1,11 +1,13 @@
 import React from 'react'
+import Card from "./Card"
+import Habits from "./Habits"
 
 const Dashboard = ({match}) => {
-    console.log(match)
+
     return (
-        <>
-        Dashboard
-        </>
+        <Card className="habits">
+            <Habits />
+        </Card>
     )
 }
 

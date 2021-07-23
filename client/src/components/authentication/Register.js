@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from "axios"
-import { UserContext } from "../../utils/UserContext"
+import { UserContext } from "../../Utils/UserContext"
 
 
 const Register = () => {
@@ -18,12 +18,8 @@ const Register = () => {
 
             e.preventDefault();
             await axios.post("http://localhost:3001/registerUser", { username, password })
-            
             setLogin(true)
             history.push(`/dashboard/${username}`)            
-            // if (error) setError('') ;
-            // setUsername('')
-            // setPassword('')
 
         } catch (err) {
 

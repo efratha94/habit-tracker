@@ -4,7 +4,6 @@ import { UserContext } from "./UserContext"
 
 export const ProtectedRoute = ({component: Component, ...rest}) => {
     const { login, setLogin } = useContext(UserContext);
-    // console.log({...rest}, login)
 
     return (
         <Route {...rest} render={

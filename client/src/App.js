@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react'
 import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
-import SignIn from "./components/authentication/SignIn"
-import Register from "./components/authentication/Register"
-import Dashboard from "./components/dashboard/Dashboard"
-import { UserContext } from "./utils/UserContext"
-import { ProtectedRoute } from "./utils/ProtectedRoute"
+import SignIn from "./components/Authentication/SignIn"
+import Register from "./components/Authentication/Register"
+import Dashboard from "./components/Dashboard/Dashboard"
+import { UserContext } from "./Utils/UserContext"
+import { ProtectedRoute } from "./Utils/ProtectedRoute"
 import './App.css';
 
 const App = () => {
