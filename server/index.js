@@ -2,11 +2,13 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const path = require("path")
+const mongoose = require("mongoose")
 
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true  })
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
