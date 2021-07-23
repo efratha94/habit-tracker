@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import SignIn from "./components/Authentication/SignIn"
 import Register from "./components/Authentication/Register"
 import Dashboard from "./components/Dashboard/Dashboard"
