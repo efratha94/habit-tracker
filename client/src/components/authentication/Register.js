@@ -1,16 +1,32 @@
 import React, { useState } from 'react'
+import axios from "axios"
+
 
 const Register = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        console.log(username, password)
-        setUsername('')
-        setPassword('')
-        //push to db
+
+    const handleSubmit = async e => {
+
+        try {
+
+            e.preventDefault();
+            await axios.post("http://localhost:3001/registerUser", { username, password })
+            
+            if (error) setError('') ;
+            setUsername('')
+            setPassword('')
+
+        } catch (err) {
+
+            setError(err.response.data)
+            setUsername('')
+            setPassword('')
+            
+        }
     }
 
 
@@ -37,6 +53,8 @@ const Register = () => {
 
                 <button>Register!</button>
             </form>
+            
+            {error ? <div>{error}</div> : null} {/* should be refined */}
         </>
     )
 }

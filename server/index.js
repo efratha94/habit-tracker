@@ -3,10 +3,12 @@ const express = require('express');
 const app = express();
 const path = require("path")
 const mongoose = require("mongoose")
+const api = require("../server/api/api")
 
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
 
 mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true  })
 
@@ -18,9 +20,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.get("/api", (req, res) => {
-    res.json({ "message": "Hello from server!" });
-  });
+app.use("/", api)
 
 app.listen(3001, () => {
   console.log('Listening on 3001...');
