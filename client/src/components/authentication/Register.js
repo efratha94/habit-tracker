@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from "axios"
+import { UserContext } from "../../utils/UserContext"
 
 
 const Register = () => {
@@ -7,7 +9,8 @@ const Register = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
-
+    let history = useHistory();
+    const { login, setLogin } = useContext(UserContext);
 
     const handleSubmit = async e => {
 
@@ -16,16 +19,18 @@ const Register = () => {
             e.preventDefault();
             await axios.post("http://localhost:3001/registerUser", { username, password })
             
-            if (error) setError('') ;
-            setUsername('')
-            setPassword('')
+            setLogin(true)
+            history.push(`/dashboard/${username}`)            
+            // if (error) setError('') ;
+            // setUsername('')
+            // setPassword('')
 
         } catch (err) {
 
             setError(err.response.data)
             setUsername('')
             setPassword('')
-            
+
         }
     }
 

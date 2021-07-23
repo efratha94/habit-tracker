@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Dashboard = () => {
+const Dashboard = ({match}) => {
+    console.log(match)
     return (
         <>
         Dashboard
