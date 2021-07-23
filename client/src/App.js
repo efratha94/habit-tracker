@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import SignIn from "./components/authentication/SignIn"
+import Register from "./components/authentication/Register"
+import Dashboard from "./components/dashboard/Dashboard"
 import './App.css';
 
-function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+const App = () => {
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
-    </div>
-  );
+    <Router>
+      <div id="container">
+        <div id="main-links">
+            
+        </div>
+
+        <Route path="/signin" exact render={({match}) => <SignIn match={match} />} />
+        <Route path="/register" exact render={({match}) => <Register match={match} />} />
+        <Route path="/dashboard/:user" exact render={({match}) => <Dashboard match={match} />} />
+      </div>
+    </Router>
+  )
 }
 
 export default App;
