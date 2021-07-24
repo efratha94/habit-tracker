@@ -16,16 +16,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
-    margin: 1rem 0;
     background-color: #b67474;
 }
   
-.habit ul {
+.habits-list ul {
     list-style: none;
     padding: 1rem;
 }
   
-.habit li {
+.habits-list li {
     border: 1px solid #ccc;
     margin: 0.5rem 0;
     padding: 0.5rem;
@@ -35,9 +34,9 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items: flex-end;
+    align-items: center;
     flex-flow: column-reverse;
-    justify-content: flex-start;
+    justify-content: center;
     flex: 1;
 }
   
@@ -46,7 +45,9 @@
     font-size: 1rem;
     flex: 1;
     margin: 0 1rem;
-    color: white;
+    color: rgb(165, 154, 154);
+    text-align: center;
+    
 }
 
 .new-habit {
@@ -113,4 +114,23 @@
   
   .new-habit__actions {
     text-align: center;
+  }
+
+  .progress-bar {
+      position: relative;
+      height: 30px;
+      width: 300px;
+      background-color: #d8d8d8;
+      border-radius: 20px;
+  }
+
+  .filler {
+    background: linear-gradient(to left, #F2709C, #FF9472);
+    box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C;
+    height: 100%;
+    display: flex;
+    border-radius: inherit;
+    transition: width .2s ease-in;
+    /* align-items: center;
+    justify-content: center; */
   }

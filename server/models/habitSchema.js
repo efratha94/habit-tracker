@@ -3,7 +3,13 @@ const Schema = mongoose.Schema
 
 const habitSchema = new Schema({
     name: { type: String, minlength: 2, required: true },
-    pastDays: Array,
+    pastDays: [{
+        weekNumber: { type: Number },
+        weekDates: [{
+            date: { type: String },
+            completed: { type: Boolean }
+        }]
+    }],
     user: { type: Schema.Types.ObjectId, ref: 'user' }
 })
 
