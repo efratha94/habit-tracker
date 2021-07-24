@@ -1,7 +1,8 @@
 import React from 'react'
 import Card from './Card'
 import "./Dashboard.css"
-import ProgressBar from "./ProgressBar"
+// import ProgressBar from "./ProgressBar"
+import Day from "./Day"
 
 const Habit = (props) => {
     console.log("habit props", props)
@@ -10,12 +11,10 @@ const Habit = (props) => {
             <Card className="habit">
                 {/* <ExpenseDate date={props.date}/> */}
                 <div className="habit__description">
-                    <ProgressBar habit={props.habitName} percentage={'20'}/>
-                    {/* <div className="progress-bar">
-                        <h2>{props.habitName.toUpperCase()}</h2>
-                        <span className="progress-bar-done">
-                        </span>
-                    </div> */}
+                    <h2 className="habit-header">{props.habitName.toUpperCase()}</h2>
+                    {props.pastDays.map((d, i) => (
+                        <Day day={d.date} completed={d.completed} key={i} />
+                    ))}
                 </div>
             </Card>
         </li>
@@ -23,3 +22,14 @@ const Habit = (props) => {
 }
 
 export default Habit
+
+
+                    {/* <ProgressBar habit={props.habitName} percentage={'20'}/> */}
+                    {/* <div className="progress-bar">
+                        <span className="progress-bar-done">
+                        </span>
+                    </div> */}
+
+                    // {props.pastDays.map((day, ind) => {
+                    //     
+                    // })}
