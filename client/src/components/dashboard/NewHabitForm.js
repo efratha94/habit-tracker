@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../../utils/UserContext'
 import "./Dashboard.css"
 
@@ -16,11 +16,12 @@ const NewHabitForm = (props) => {
     const submitHandler = async e => {
         try {
             e.preventDefault()
-            
+
             await axios.post('http://localhost:3001/newhabit', { habit, activeUser })
             props.onSaveNewHabit(habit)
             setHabit('')
         } catch (err) {
+            console.log(err)
             setError(err.response.data)
             setHabit('')
         }
