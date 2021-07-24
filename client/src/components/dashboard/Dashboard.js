@@ -19,13 +19,10 @@ const Dashboard = () => {
     useEffect(() => {
         const getHabits = async () => {
             const listOfHabits = await axios.get(`http://localhost:3001/habits/${activeUser}`)
-            // console.log("listOfHabits", listOfHabits)
             setHabits(listOfHabits.data)
         }
-
         getHabits()
-    },
-        [setHabits])
+        }, [setHabits])
 
     return (
         <Card className="habits">
