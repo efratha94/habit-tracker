@@ -9,7 +9,8 @@ import './App.css';
 
 const App = () => {
   const [login, setLogin] = useState(false)
-  const providerLogin = useMemo(() => ({login, setLogin}), [login, setLogin])
+  const [activeUser, setActiveUser] = useState('')
+  const providerLogin = useMemo(() => ({login, setLogin, activeUser, setActiveUser}), [login, setLogin, activeUser, setActiveUser])
 
   return (
     <Router>

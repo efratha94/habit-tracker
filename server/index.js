@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
-mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true  })
+mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false  })
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')

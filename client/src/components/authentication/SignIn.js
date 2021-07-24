@@ -10,7 +10,7 @@ const SignIn = () => {
     const [error, setError] = useState('')
     let history = useHistory();
 
-    const { login, setLogin } = useContext(UserContext);
+    const { login, setLogin, activeUser, setActiveUser } = useContext(UserContext);
 
     const handleSubmit = async e => {
 
@@ -19,6 +19,7 @@ const SignIn = () => {
             e.preventDefault();
             await axios.post("http://localhost:3001/signInUser", { username, password })
             setLogin(true)
+            setActiveUser(username)
             history.push(`/dashboard/${username}`)
 
         } catch (err) {

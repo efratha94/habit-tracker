@@ -4,13 +4,9 @@ import NewHabitForm from './NewHabitForm'
 const NewHabit = (props) => {
     const [isEditing, setIsEditing] = useState(false)
 
-    const saveNewHabitHandler = (enteredHabit) => {
-        console.log("enteredHabit", enteredHabit)
-        const habitData = {
-            // id: Math.random().toString(),
-            ...enteredHabit
-        }
-        props.onAddHabit(habitData)
+    const saveNewHabitHandler = enteredHabit => {
+        // console.log("enteredHabit", enteredHabit)
+        props.onAddHabit(enteredHabit)
         setIsEditing(false)
     }
 

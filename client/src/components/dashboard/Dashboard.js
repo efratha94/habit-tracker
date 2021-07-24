@@ -4,7 +4,7 @@ import Habits from "./Habits"
 import NewHabit from './NewHabit'
 
 const Dashboard = ({match}) => {
-    const [habit, setHabits] = useState([])
+    const [habits, setHabits] = useState([])
 
     const addHabitHandler = (habit) => {
         setHabits((prevHabits) => {
@@ -12,6 +12,7 @@ const Dashboard = ({match}) => {
         })
     }
 
+    // useEffect - get habits
     return (
         <Card className="habits">
             <NewHabit onAddHabit={addHabitHandler}/>

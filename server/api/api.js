@@ -19,6 +19,7 @@ router.post("/registerUser", async (req, res) => {
     }
 })
 
+
 router.post("/signInUser", async (req, res) => {
 
     try {
@@ -30,6 +31,32 @@ router.post("/signInUser", async (req, res) => {
         }
     } catch (err) {
         //should refine it
+        res.status(400).send(err.message)
+    }
+})
+
+
+router.post("/newhabit", async (req, res) => {
+
+    try {
+
+        let findUser = await User.findOne({ username: req.body.activeUser })
+        // console.log("findUser", findUser)
+        let habitMatch = findUser.habits.find(habit => habit !== req.body.habit)
+        // console.log("habitMatch", habitMatch)
+
+        if (!habitMatch) {
+            let newHabit = new Habit({ name: req.body.habit, user: findUser._id })
+            findUser.habits.push(newHabit)
+            findUser.save()
+            newHabit.save()
+            res.status(200).send(`Saved new habit: ${req.body.habit}`)
+            
+        } else {
+            throw new Error("Habit already exists for that user")
+        }
+
+    } catch (err) {
         res.status(400).send(err.message)
     }
 })
