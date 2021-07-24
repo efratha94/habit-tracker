@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { UserContext } from "./UserContext"
 
 export const ProtectedRoute = ({component: Component, ...rest}) => {
-    const { login, setLogin } = useContext(UserContext);
+    const { login } = useContext(UserContext);
 
     return (
         <Route {...rest} render={

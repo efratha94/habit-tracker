@@ -3,14 +3,16 @@ const express = require('express');
 const app = express();
 const path = require("path")
 const mongoose = require("mongoose")
+
+mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false  })
 const api = require("../server/api/api")
+
 
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
-mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false  })
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')

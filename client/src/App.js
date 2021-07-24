@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import SignIn from "./components/Authentication/SignIn"
 import Register from "./components/Authentication/Register"
 import Dashboard from "./components/Dashboard/Dashboard"
-import { UserContext } from "./Utils/UserContext"
-import { ProtectedRoute } from "./Utils/ProtectedRoute"
+import { UserContext } from "./utils/UserContext"
+import { ProtectedRoute } from "./utils/ProtectedRoute"
 import './App.css';
 
 const App = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from "axios"
-import { UserContext } from "../../Utils/UserContext"
+import { UserContext } from "../../utils/UserContext"
 
 const SignIn = () => {
 
@@ -10,7 +10,7 @@ const SignIn = () => {
     const [error, setError] = useState('')
     let history = useHistory();
 
-    const { login, setLogin, activeUser, setActiveUser } = useContext(UserContext);
+    const { setLogin, setActiveUser } = useContext(UserContext);
 
     const handleSubmit = async e => {
 

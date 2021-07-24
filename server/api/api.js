@@ -39,11 +39,12 @@ router.post("/signInUser", async (req, res) => {
 router.post("/newhabit", async (req, res) => {
 
     try {
+        console.log(req.body)
+        let findUser = await User.findOne({ username: req.body.activeUser }).populate('habits').exec()
 
-        let findUser = await User.findOne({ username: req.body.activeUser })
-        // console.log("findUser", findUser)
-        let habitMatch = findUser.habits.find(habit => habit !== req.body.habit)
-        // console.log("habitMatch", habitMatch)
+        let habitMatch = findUser.habits.find(habit => {
+            return habit.name === req.body.habit
+        })
 
         if (!habitMatch) {
             let newHabit = new Habit({ name: req.body.habit, user: findUser._id })
@@ -51,7 +52,7 @@ router.post("/newhabit", async (req, res) => {
             findUser.save()
             newHabit.save()
             res.status(200).send(`Saved new habit: ${req.body.habit}`)
-            
+
         } else {
             throw new Error("Habit already exists for that user")
         }
@@ -59,6 +60,19 @@ router.post("/newhabit", async (req, res) => {
     } catch (err) {
         res.status(400).send(err.message)
     }
+})
+
+router.get("/habits/:username", async (req, res) => {
+    try {
+
+        const username = req.params.username
+        const userHabits = await User.findOne({ username }).populate('habits').exec()
+        console.log("userHabits", userHabits.habits)
+
+    } catch (err) {
+        console.log(err)
+    }
+
 })
 
 module.exports = router;

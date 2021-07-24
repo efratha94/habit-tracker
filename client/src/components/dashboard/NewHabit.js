@@ -5,7 +5,6 @@ const NewHabit = (props) => {
     const [isEditing, setIsEditing] = useState(false)
 
     const saveNewHabitHandler = enteredHabit => {
-        // console.log("enteredHabit", enteredHabit)
         props.onAddHabit(enteredHabit)
         setIsEditing(false)
     }

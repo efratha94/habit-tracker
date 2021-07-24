@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, { useState, useContext } from 'react'
-import { UserContext } from '../../Utils/UserContext'
+import { UserContext } from '../../utils/UserContext'
 
 const NewHabitForm = (props) => {
     const [habit, setHabit] = useState('')
     const [error, setError] = useState('')
-    const { activeUser, setActiveUser } = useContext(UserContext)
+    const { activeUser } = useContext(UserContext)
 
     const newHabitHandler = e => {
         setHabit(e.target.value)
