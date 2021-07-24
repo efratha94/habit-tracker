@@ -3,10 +3,9 @@ const express = require('express');
 const app = express();
 const path = require("path")
 const mongoose = require("mongoose")
-
-mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false  })
 const api = require("../server/api/api")
 
+mongoose.connect("mongodb://localhost/habit-tracker", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false  })
 
 app.use(cors());
 app.use(express.json())

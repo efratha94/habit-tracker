@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NewHabitForm from './NewHabitForm'
+import "./Dashboard.css"
 
 const NewHabit = (props) => {
     const [isEditing, setIsEditing] = useState(false)
@@ -19,7 +20,7 @@ const NewHabit = (props) => {
 
 
     return (
-        <div className="new-habit">
+        <div className='new-habit'>
             {!isEditing && <button onClick={startEditingHandler}>Add New Habit</button>}
             {isEditing && <NewHabitForm onSaveNewHabit={saveNewHabitHandler} onCancel={stopEditingHandler}/>}
         </div>

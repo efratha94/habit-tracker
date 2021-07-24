@@ -58,6 +58,7 @@ router.post("/newhabit", async (req, res) => {
         }
 
     } catch (err) {
+        //should refine it
         res.status(400).send(err.message)
     }
 })
@@ -66,11 +67,19 @@ router.get("/habits/:username", async (req, res) => {
     try {
 
         const username = req.params.username
-        const userHabits = await User.findOne({ username }).populate('habits').exec()
-        console.log("userHabits", userHabits.habits)
+        const findUser = await User.findOne({ username }).populate('habits').exec()
+        let userHabits  = findUser.habits.map(habit => {
+            return {
+                name: habit.name,
+                pastDays: habit.pastDays
+            }
+        })
+        
+        res.status(200).send(userHabits)
 
     } catch (err) {
-        console.log(err)
+        //should refine it
+        res.status(400).send(err.message)
     }
 
 })

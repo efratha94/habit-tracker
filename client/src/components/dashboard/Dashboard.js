@@ -4,6 +4,7 @@ import Card from "./Card"
 import Habits from "./Habits"
 import NewHabit from './NewHabit'
 import { UserContext } from '../../utils/UserContext'
+import "./Dashboard.css"
 
 const Dashboard = () => {
     const [habits, setHabits] = useState([])
@@ -18,7 +19,7 @@ const Dashboard = () => {
     useEffect(() => {
         const getHabits = async () => {
             const listOfHabits = await axios.get(`http://localhost:3001/habits/${activeUser}`)
-            console.log("listOfHabits", listOfHabits)
+            setHabits(listOfHabits.data)
         }
 
         getHabits()
@@ -28,7 +29,7 @@ const Dashboard = () => {
     return (
         <Card className="habits">
             <NewHabit onAddHabit={addHabitHandler}/>
-            <Habits />
+            <Habits habits={habits} />
         </Card>
     )
 }
