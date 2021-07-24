@@ -10,16 +10,12 @@ const Day = (props) => {
     const [completed, setCompleted] = useState(props.completed)
     const [open, setOpen] = useState(false);
     const myCallbackList = useRef([])
-
+ 
     let date = props.day.split("-")[0]
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
     const setCompletedWithCBs = (newState, callback) => {
         setCompleted(newState)
-        if (callback) myCallbackList.current.push({func: callback, args: [newState, date]})
+        if (callback) myCallbackList.current.push({func: callback, args: [newState, props.day]})
     }
 
     useEffect(() => {
@@ -29,26 +25,20 @@ const Day = (props) => {
         myCallbackList.current = []
     }, [completed])
 
+    const changeCompleted = (completed, date) => {
+        props.onChangeCompleted(completed, date)
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
     const handleClose = async e => {
         if (e.target.textContent === "Yes" && !completed) setCompletedWithCBs(true, changeCompleted);
         if (e.target.textContent === "Yes" && completed) setCompletedWithCBs(false, changeCompleted);
         setOpen(false)
     };
 
-    const changeCompleted = (completed, date) => {
-        props.onChangeCompleted(completed, date)
-    }
-    // useEffect(() => {
-    //     if (isFirstRender.current) {
-    //         setCompleted(props.completed)
-    //         isFirstRender.current = false
-    //         return;
-    //     } else {
-    //         props.onChangeCompleted({completed, date})
-    //     }
-    // }, [completed])
-
-    
     return (
 
         <span className={completed ? "outer-circle-completed" : "outer-circle-not-completed"}>

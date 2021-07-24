@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const ObjectId = require('mongoose').Types.ObjectId;
 const { week, weekNumber } = require("../controller/weekdates")
 const User = require("../models/userSchema")
 const Habit = require("../models/habitSchema")
@@ -90,14 +91,32 @@ router.get("/habits/:username", async (req, res) => {
             }
             return item
         })
-        // console.log("userHabits", userHabits)
         res.status(200).send(userHabits)
     } catch (err) {
         // should refine it
-        console.log("err", err)
         res.status(400).send(err.message)
     }
 
 })
 
+router.post("/updatehabit", async (req, res) => {
+    // console.log(req.body)
+
+    try {
+        const findUser = await User.findOne({ username: req.body.user })
+        const userID =  "60fbe9c3cf57b748d0a2b278" //findUser._id
+        
+        const findHabit = await Habit.findOne({ user: ObjectId(userID) })
+        // console.log("findHabit", findHabit)
+        const currWeek = findHabit.pastDays.filter(week => week.weekNumber === req.body.weekNumber)[0].weekDates
+        const currDay = currWeek.filter(day => day.date === req.body.date)[0]
+        currDay.completed = req.body.completed
+        findHabit.save()
+        res.status(200).send("OK")
+
+    } catch (err) {
+        // should refine it
+        res.status(400).send(err.message)
+    }
+})
 module.exports = router;
