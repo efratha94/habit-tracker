@@ -1,4 +1,5 @@
 import React, { useState, useEffect,useCallback,  useRef } from 'react'
+
 import "./Dashboard.css";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -7,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const Day = (props) => {
-    const [completed, setCompleted] = useState(props.completed)
+    const [completed, setCompleted] = useState(props.completed);
     const [open, setOpen] = useState(false);
     const myCallbackList = useRef([])
  
@@ -41,7 +42,7 @@ const Day = (props) => {
 
     return (
 
-        <span className={completed ? "outer-circle-completed" : "outer-circle-not-completed"}>
+        <span className={completed ? "outer-circle-completed" : "outer-circle-not-completed"} style={ completed ? {backgroundColor: props.colour} : null }>
             <span className="inner-circle" onClick={handleClickOpen}>
                 {/* dynamic background colour for completeion */}
                 {date}

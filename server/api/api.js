@@ -109,14 +109,13 @@ router.get("/habits/:username", async (req, res) => {
 })
 
 router.post("/updatehabit", async (req, res) => {
-    // console.log(req.body)
+    console.log(req.body)
 
     try {
         const findUser = await User.findOne({ username: req.body.user })
         const userID = findUser._id
         
-        const findHabit = await Habit.findOne({ user: ObjectId(userID) })
-        // console.log("findHabit", findHabit)
+        const findHabit = await Habit.findOne({ user: ObjectId(userID), name: req.body.habitName })
         const currWeek = findHabit.pastDays.filter(week => week.weekNumber === req.body.weekNumber)[0].weekDates
         const currDay = currWeek.filter(day => day.date === req.body.date)[0]
         currDay.completed = req.body.completed

@@ -8,7 +8,6 @@ import "./Dashboard.css"
 
 const Dashboard = () => {
     const [habits, setHabits] = useState([])
-    const [habit, setHabit] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const { activeUser } = useContext(UserContext)
 
@@ -25,6 +24,7 @@ const Dashboard = () => {
         setIsLoading(true)
         const getHabits = async () => {
             const listOfHabits = await axios.get(`http://localhost:3001/habits/${activeUser}`)
+            console.log("listOfHabits.data", listOfHabits.data)
             setHabits(listOfHabits.data)
             setIsLoading(false)
         }
