@@ -18,13 +18,10 @@ const NewHabitForm = (props) => {
             e.preventDefault()
 
             let resp = await axios.post('http://localhost:3001/newhabit', { habit, activeUser })
-            // console.log("resp", resp)
             props.onSaveNewHabit(resp.data)
-            setHabit('')
         } catch (err) {
             console.log(err)
             setError(err.response.data)
-            setHabit('')
         }
     }
 

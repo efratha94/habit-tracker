@@ -18,7 +18,7 @@ const Habit = (props) => {
     const [open, setOpen] = useState(true);
     const { activeUser } = useContext(UserContext)
 
-    // console.log("props", props)
+    
     const changeCompleted = async (status, date) => {
         try {
             let habitData = {
@@ -36,11 +36,6 @@ const Habit = (props) => {
             setOpen(true);
         }
     }
-
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
     const handleClose = async e => {
         setOpen(false)
