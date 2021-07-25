@@ -1,22 +1,25 @@
-import React, { useState, useEffect,useCallback,  useRef } from 'react'
-
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import DialogComp from './DialogComp'
 import "./Dashboard.css";
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
+// import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
 
 const Day = (props) => {
     const [completed, setCompleted] = useState(props.completed);
     const [open, setOpen] = useState(false);
+    const [error, setError] = useState(false)
     const myCallbackList = useRef([])
- 
+
     let date = props.day.split("-")[0]
+    const newDate = new Date()
+    const currDate = newDate.getDate()
+
 
     const setCompletedWithCBs = (newState, callback) => {
         setCompleted(newState)
-        if (callback) myCallbackList.current.push({func: callback, args: [newState, props.day]})
+        if (callback) myCallbackList.current.push({ func: callback, args: [newState, props.day] })
     }
 
     useEffect(() => {
@@ -31,39 +34,46 @@ const Day = (props) => {
     }
 
     const handleClickOpen = () => {
-        setOpen(true);
+        if (parseInt(date) === currDate) {
+            setOpen(true);
+        } else {
+            setOpen(true);
+            setError(true)
+        }
     };
 
-    const handleClose = async e => {
-        if (e.target.textContent === "Yes" && !completed) setCompletedWithCBs(true, changeCompleted);
-        if (e.target.textContent === "Yes" && completed) setCompletedWithCBs(false, changeCompleted);
+    const handleClose = content => {
+        if (content === "Yes" && !completed) setCompletedWithCBs(true, changeCompleted);
+        if (content === "Yes" && completed) setCompletedWithCBs(false, changeCompleted);
         setOpen(false)
     };
 
     return (
 
-        <span className={completed ? "outer-circle-completed" : "outer-circle-not-completed"} style={ completed ? {backgroundColor: props.colour} : null }>
+        <span className={completed ? "outer-circle-completed" : "outer-circle-not-completed"} style={completed ? { backgroundColor: props.colour } : null}>
             <span className="inner-circle" onClick={handleClickOpen}>
-                {/* dynamic background colour for completeion */}
                 {date}
             </span>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                <DialogTitle id="alert-dialog-title">
-                    {!completed ? 
-                        "Do you wish to mark this habit as completed?" : 
-                        "Do you wish to mark this habit as not completed?"}
-                </DialogTitle>
-                <DialogActions>
-                    <Button onClick={handleClose} color="secondary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleClose} color="secondary" autoFocus>
-                        Yes
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <DialogComp
+                isOpen={open}
+                onCloseHandle={handleClose}
+                title={!completed ?
+                    "Do you wish to mark this habit as completed?" :
+                    "Do you wish to mark this habit as not completed?"}
+                content={null}
+                okButton={true}
+            />
+            {error &&
+                <DialogComp
+                    isOpen={open}
+                    onCloseHandle={handleClose}
+                    title="Are you Doctor Who? Otherwise, you cannot update a future date"
+                    content={null}
+                    okButton={false}
+                />}
         </span>
     )
 }
 
 export default Day
+

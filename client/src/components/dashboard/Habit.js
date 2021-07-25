@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import "./Dashboard.css"
 import Card from './Card'
 import Day from "./Day"
+import DialogComp from './DialogComp'
 import { UserContext } from '../../utils/UserContext'
 import axios from "axios";
 
@@ -49,24 +50,17 @@ const Habit = (props) => {
                         <Day day={d.date} colour={props.colour} completed={d.completed} key={i} onChangeCompleted={changeCompleted} error={error}/>
                     ))}
                 </div>
+                {/* <div>Delete Habit</div> */}
             </Card>
+            
             {error &&
-                <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                    <DialogTitle id="alert-dialog-title">
-                        Could not update habit!
-                    </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        Error recieved: {error}. 
-                        Please try again.
-                    </DialogContentText>
-                </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="secondary" autoFocus>
-                            OK
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                <DialogComp 
+                    isOpen={open} 
+                    onCloseHandle={handleClose}
+                    title="Could not update habit!"
+                    content={`Error recieved: ${error}. Please try again later`} 
+                    okButton={false}
+                />
             }
         </li>
     )

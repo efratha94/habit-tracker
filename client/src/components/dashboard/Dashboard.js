@@ -24,7 +24,6 @@ const Dashboard = () => {
         setIsLoading(true)
         const getHabits = async () => {
             const listOfHabits = await axios.get(`http://localhost:3001/habits/${activeUser}`)
-            console.log("listOfHabits.data", listOfHabits.data)
             setHabits(listOfHabits.data)
             setIsLoading(false)
         }
