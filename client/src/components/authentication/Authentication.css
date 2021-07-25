@@ -8,6 +8,11 @@
     border-radius: 12px;
     text-align: center;
     justify-content: center;
+    height: 75%;
+}
+
+.auth-form form {
+    margin-top: 2rem;
 }
 
 .submit-auth {

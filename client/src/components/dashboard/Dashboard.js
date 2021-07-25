@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import Card from "../../utils/Card"
 import Habits from "./Habits/Habits"

@@ -16,10 +16,6 @@ const App = () => {
   return (
     <Router>
       <div id="container">
-        <div id="main-links">
-            
-        </div>
-
         <UserContext.Provider value={providerLogin}>
           <Switch>
             <Route path="/" exact component={Landing} />

@@ -1,0 +1,49 @@
+
+.landing-page{
+    background: rgb(245, 245, 245);
+    box-shadow:  0 1px 8px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    margin: 2rem auto;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    justify-content: center;
+    height: 75%;
+}
+
+.landing-page h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    flex: 1;
+    margin: 0 1rem;
+    margin-top: 2rem;
+    display: block;
+    text-align: center;
+}
+
+.landing-page h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    flex: 1;
+    margin: 0 1rem;
+    margin-top: 2rem;
+    display: block;
+    text-align: center;
+}
+
+.landing-link {
+    margin: 1rem;
+    margin-top:2rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.03rem;
+}
+
+.landing-link span {
+    color: rgb(32, 178, 170)
+}
+.landing-link span:hover {
+    color: rgb(64, 224, 208)
+}
