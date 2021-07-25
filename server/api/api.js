@@ -65,7 +65,13 @@ router.post("/newhabit", async (req, res) => {
             findUser.habits.push(newHabit)
             findUser.save()
             newHabit.save()
-            res.status(200).send(`Saved new habit: ${req.body.habit}`)
+
+            let habitToReturn = {
+                name: newHabit.name,
+                weekNumber: newHabit.pastDays[0].weekNumber,
+                pastDays: newHabit.pastDays[0].weekDates
+            }
+            res.status(200).send(habitToReturn)
 
         } else {
             throw new Error("Habit already exists for that user")

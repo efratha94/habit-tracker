@@ -3,7 +3,7 @@ import Habit from './Habit'
 import "./Dashboard.css"
 
 const Habits = (props) => {
-
+    console.log("props.habits", props.habits)
     return (
         <ul className="habits-list">
             {props.habits.map((habit, ind) => (
