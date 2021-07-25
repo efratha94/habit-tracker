@@ -1,0 +1,66 @@
+
+.auth-form {
+    background: rgb(245, 245, 245);
+    box-shadow:  0 1px 8px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    margin: 2rem auto;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    justify-content: center;
+}
+
+.submit-auth {
+    font: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(135, 206, 250, 0.76);
+    background-color: rgba(135, 206, 250, 0.76);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+    text-align: center;
+    justify-content: center;
+}
+
+.submit-auth:hover,
+.submit-auth:active {
+    background-color: rgb(135, 206, 250);
+    border-color: rgba(135, 206, 250, 0.76);
+}
+
+.auth-field__controls {
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-align: cetner;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-field {
+    width: 100%;
+}
+
+.auth-field label {
+    font-weight: bold;
+    margin: 1rem;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+}
+  
+.auth-field input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+

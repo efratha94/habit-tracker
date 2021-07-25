@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from "../../utils/UserContext"
 import axios from "axios"
+import "./Authentication.css"
 
 const SignIn = () => {
 
@@ -15,7 +16,7 @@ const SignIn = () => {
     const handleSubmit = async e => {
 
         try {
-            
+
             e.preventDefault();
             await axios.post("http://localhost:3001/signInUser", { username, password })
             setLogin(true)
@@ -31,31 +32,36 @@ const SignIn = () => {
 
 
     return (
-        <>
+        <div className="auth-form">
             <form onSubmit={handleSubmit}>
+                <div className="auth-field__controls">
+                    <div className="auth-field">
+                        <label>Username:</label>
+                        <input
+                            value={username || ''}
+                            name="username"
+                            required
+                            onChange={e => setUsername(e.target.value)}
+                            type="text"
+                        />
+                    </div>
+                    <div className="auth-field">
+                        <label>Password:</label>
+                        <input
+                            value={password || ''}
+                            name="password"
+                            required
+                            onChange={e => setPassword(e.target.value)}
+                            type="text"
+                        />
+                    </div>
+                </div>
 
-                <label>Username:</label>
-                <input
-                    value={username || ''}
-                    name="username"
-                    required
-                    onChange={e => setUsername(e.target.value)}
-                    type="text"
-                />
-                <label>Password:</label>
-                <input
-                    value={password || ''}
-                    name="password"
-                    required
-                    onChange={e => setPassword(e.target.value)}
-                    type="text"
-                />
-
-                <button>Login!</button>
+                <button className="submit-auth">Login!</button>
             </form>
-            
+
             {error ? <div>{error}</div> : null} {/* should be refined */}
-        </>
+        </div>
     )
 }
 

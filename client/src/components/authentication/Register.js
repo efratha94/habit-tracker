@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from "axios"
 import { UserContext } from "../../utils/UserContext"
-
+import "./Authentication.css"
 
 const Register = () => {
 
@@ -20,7 +20,7 @@ const Register = () => {
             await axios.post("http://localhost:3001/registerUser", { username, password })
             setLogin(true)
             setActiveUser(username)
-            history.push(`/dashboard/${username}`)            
+            history.push(`/dashboard/${username}`)
 
         } catch (err) {
 
@@ -33,31 +33,36 @@ const Register = () => {
 
 
     return (
-        <>
+        <div className="auth-form">
             <form onSubmit={handleSubmit}>
+                <div className="auth-field__controls">
+                    <div className="auth-field">
+                        <label>Username:</label>
+                        <input
+                            value={username || ''}
+                            name="username"
+                            required
+                            onChange={e => setUsername(e.target.value)}
+                            type="text"
+                        />
+                    </div>
+                    <div className="auth-field">
 
-                <label>Username:</label>
-                <input
-                    value={username || ''}
-                    name="username"
-                    required
-                    onChange={e => setUsername(e.target.value)}
-                    type="text"
-                />
-                <label>Password:</label>
-                <input
-                    value={password || ''}
-                    name="password"
-                    required
-                    onChange={e => setPassword(e.target.value)}
-                    type="text"
-                />
+                        <label>Password:</label>
+                        <input
+                            value={password || ''}
+                            name="password"
+                            required
+                            onChange={e => setPassword(e.target.value)}
+                            type="text"
+                        />
+                    </div>
 
-                <button>Register!</button>
+                    <button className="submit-auth"> Register! </button>
+                </div>
             </form>
-            
             {error ? <div>{error}</div> : null} {/* should be refined */}
-        </>
+        </div>
     )
 }
 
