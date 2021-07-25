@@ -45,7 +45,7 @@ const Habit = (props) => {
         <li>
             <Card className="habit">
                 <div className="habit__description">
-                    <h2 className="habit-header">{props.habitName}</h2>
+                    <h2 className="habit-header">{props.habitName.toUpperCase()}</h2>
                     {props.pastDays.map((d, i) => (
                         <Day day={d.date} completed={d.completed} key={i} onChangeCompleted={changeCompleted} error={error}/>
                     ))}
