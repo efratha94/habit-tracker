@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
-import DialogComp from './DialogComp'
-import "./Dashboard.css";
-import Button from '@material-ui/core/Button';
-// import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React, { useState, useEffect, useRef } from 'react'
+import DialogComp from '../../../utils/DialogComp'
+import "../Dashboard.css";
+
 
 const Day = (props) => {
     const [completed, setCompleted] = useState(props.completed);

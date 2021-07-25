@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Landing from './components/Landing/Landing'
 import SignIn from "./components/Authentication/SignIn"
 import Register from "./components/Authentication/Register"
 import Dashboard from "./components/Dashboard/Dashboard"
@@ -21,7 +22,7 @@ const App = () => {
 
         <UserContext.Provider value={providerLogin}>
           <Switch>
-            {/* landing page */}
+            <Route path="/" exact component={Landing} />
             <Route path="/signin" exact component={SignIn} />
             <Route path="/register" exact component={Register} />
             <ProtectedRoute path="/dashboard/:user" exact component={Dashboard} />

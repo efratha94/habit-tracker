@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from "axios"
 import { UserContext } from "../../utils/UserContext"
 import "./Authentication.css"
+import axios from "axios"
 
 const Register = () => {
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import NewHabitForm from './NewHabitForm'
-import "./Dashboard.css"
+import "../Dashboard.css"
 
 const NewHabit = (props) => {
     const [isEditing, setIsEditing] = useState(false)

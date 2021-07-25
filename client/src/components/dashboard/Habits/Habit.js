@@ -1,17 +1,10 @@
 import React, { useState, useContext } from 'react'
-import "./Dashboard.css"
-import Card from './Card'
+import "../Dashboard.css"
+import Card from '../../../utils/Card'
 import Day from "./Day"
-import DialogComp from './DialogComp'
-import { UserContext } from '../../utils/UserContext'
+import DialogComp from '../../../utils/DialogComp'
+import { UserContext } from '../../../utils/UserContext'
 import axios from "axios";
-
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 
 
 const Habit = (props) => {
@@ -52,7 +45,7 @@ const Habit = (props) => {
                 </div>
                 {/* <div>Delete Habit</div> */}
             </Card>
-            
+
             {error &&
                 <DialogComp 
                     isOpen={open} 

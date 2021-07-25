@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext, useCallback, useRef } from 'react'
 import axios from 'axios'
-import Card from "./Card"
-import Habits from "./Habits"
-import NewHabit from './NewHabit'
+import Card from "../../utils/Card"
+import Habits from "./Habits/Habits"
+import NewHabit from './NewHabits/NewHabit'
 import { UserContext } from '../../utils/UserContext'
 import "./Dashboard.css"
 

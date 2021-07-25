@@ -1,7 +1,7 @@
 import axios from 'axios'
-import React, { useState, useEffect, useContext } from 'react'
-import { UserContext } from '../../utils/UserContext'
-import "./Dashboard.css"
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../../../utils/UserContext'
+import "../Dashboard.css"
 
 const NewHabitForm = (props) => {
     const [habit, setHabit] = useState('')
