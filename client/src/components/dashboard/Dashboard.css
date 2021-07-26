@@ -179,5 +179,6 @@ span.material-icons {
   justify-content: center;
   align-items: center;
   place-items: center;
-  vertical-align: text-bottom;
+  vertical-align: middle;
+  color: rgb(128, 128, 128);
 }
