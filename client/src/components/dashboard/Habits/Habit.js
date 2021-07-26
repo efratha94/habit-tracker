@@ -5,13 +5,14 @@ import Day from "./Day"
 import DialogComp from '../../../utils/DialogComp'
 import { UserContext } from '../../../utils/UserContext'
 import axios from "axios";
-
+// import Icon from '@material-ui/core/Icon'
 
 const Habit = (props) => {
     const [error, setError] = useState('')
     const [open, setOpen] = useState(true);
+    const [remove, setRemove] = useState(false)
     const { activeUser } = useContext(UserContext)
-
+    
     const changeCompleted = async (status, date) => {
         try {
             let habitData = {
@@ -30,7 +31,17 @@ const Habit = (props) => {
         }
     }
 
-    const handleClose = async e => {
+    const onClickDelete = () => {
+        setRemove(true)
+        setOpen(true);
+    }
+
+    const handleDelete = e => {
+        setOpen(false)
+        if (e ==="Yes") props.onDeleteHabit(activeUser, props.habitName);
+    }
+
+    const handleClose = () => {
         setOpen(false)
     };
 
@@ -40,18 +51,26 @@ const Habit = (props) => {
                 <div className="habit__description">
                     <h2 className="habit-header">{props.habitName.toUpperCase()}</h2>
                     {props.pastDays.map((d, i) => (
-                        <Day day={d.date} colour={props.colour} completed={d.completed} key={i} onChangeCompleted={changeCompleted} error={error}/>
+                        <Day day={d.date} colour={props.colour} completed={d.completed} key={i} onChangeCompleted={changeCompleted} error={error} />
                     ))}
-                </div>
-                {/* <div>Delete Habit</div> */}
+                </div> 
+                <div onClick={onClickDelete}>Delete Habit</div>
+                {remove &&                 
+                <DialogComp
+                    isOpen={open}
+                    onCloseHandle={handleDelete}
+                    title="Are you sure you want to delete this habit? All its data will be lost"
+                    content={null}
+                    okButton={true}
+                />}
             </Card>
 
             {error &&
-                <DialogComp 
-                    isOpen={open} 
+                <DialogComp
+                    isOpen={open}
                     onCloseHandle={handleClose}
                     title="Could not update habit!"
-                    content={`Error recieved: ${error}. Please try again later`} 
+                    content={`Error recieved: ${error}. Please try again later`}
                     okButton={false}
                 />
             }

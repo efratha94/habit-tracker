@@ -12,11 +12,21 @@ const Dashboard = () => {
     const { activeUser } = useContext(UserContext)
 
 
-    const addHabitHandler = (habit) => {
+    const addHabitHandler = habit => {
         setIsLoading(true)
         setHabits((prevState) => {
             return [...prevState, habit]
         })
+        setIsLoading(false)
+    }
+
+    const deleteHabitHandler = habit => {
+        const habitToSplice = habits.findIndex(el => el.name === habit)
+        const habitsDuplicate = [...habits]
+        habitsDuplicate.splice(habitToSplice, 1)
+
+        setIsLoading(true)
+        setHabits(habitsDuplicate)
         setIsLoading(false)
     }
 
@@ -34,7 +44,7 @@ const Dashboard = () => {
     return (
         <Card className="habits">
             <NewHabit onAddHabit={addHabitHandler} />
-            {isLoading ? null : <Habits habits={habits} />}
+            {isLoading ? null : <Habits habits={habits} onDeleteHabit={deleteHabitHandler}/>}
         </Card>
     )
 }

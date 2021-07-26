@@ -41,7 +41,7 @@ router.post("/signInUser", async (req, res) => {
 
 
 router.post("/newhabit", async (req, res) => {
-    // console.log("week, weekNumber", week, weekNumber)
+
     console.log(req.body)
     try {
         let findUser = await User.findOne({ username: req.body.activeUser }).populate('habits').exec()
@@ -122,6 +122,20 @@ router.post("/updatehabit", async (req, res) => {
         findHabit.save()
         res.status(200).send("OK")
 
+    } catch (err) {
+        // should refine it
+        res.status(400).send(err.message)
+    }
+})
+
+router.delete("/deleteHabit/:username/:habit", async (req, res) => {
+    try {
+        const findUser = await User.findOne({ username: req.params.username }).populate('habits').exec()
+        const userID = findUser._id
+        const habitToPull = findUser.habits.find(habit => habit.name === req.params.habit)
+        const pullHabit = findUser.habits.pull(habitToPull)
+        findUser.save()
+        res.status(200).send("OK")
     } catch (err) {
         // should refine it
         res.status(400).send(err.message)
