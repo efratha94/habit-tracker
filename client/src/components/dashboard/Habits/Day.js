@@ -31,7 +31,7 @@ const Day = (props) => {
     }
 
     const handleClickOpen = () => {
-        if (parseInt(date) === currDate) {
+        if (parseInt(date) <= currDate) {
             setOpen(true);
         } else {
             setOpen(true);
