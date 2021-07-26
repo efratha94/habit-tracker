@@ -12,7 +12,7 @@ const Habit = (props) => {
     const [open, setOpen] = useState(true);
     const [remove, setRemove] = useState(false)
     const { activeUser } = useContext(UserContext)
-    
+
     const changeCompleted = async (status, date) => {
         try {
             let habitData = {
@@ -38,7 +38,7 @@ const Habit = (props) => {
 
     const handleDelete = e => {
         setOpen(false)
-        if (e ==="Yes") props.onDeleteHabit(activeUser, props.habitName);
+        if (e === "Yes") props.onDeleteHabit(activeUser, props.habitName);
     }
 
     const handleClose = () => {
@@ -53,17 +53,16 @@ const Habit = (props) => {
                     {props.pastDays.map((d, i) => (
                         <Day day={d.date} colour={props.colour} completed={d.completed} key={i} onChangeCompleted={changeCompleted} error={error} />
                     ))}
-                <Icon className="trashcan">delete</Icon>
-                </div> 
-                {/* <div onClick={onClickDelete}>Delete Habit</div> */}
-                {remove &&                 
-                <DialogComp
-                    isOpen={open}
-                    onCloseHandle={handleDelete}
-                    title="Are you sure you want to delete this habit? All its data will be lost"
-                    content={null}
-                    okButton={true}
-                />}
+                    <Icon className="trashcan" onClick={onClickDelete}>delete</Icon>
+                </div>
+                {remove &&
+                    <DialogComp
+                        isOpen={open}
+                        onCloseHandle={handleDelete}
+                        title="Are you sure you want to delete this habit? All its data will be lost"
+                        content={null}
+                        okButton={true}
+                    />}
             </Card>
 
             {error &&

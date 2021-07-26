@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from "../../utils/UserContext"
+import DialogComp from "../../utils/DialogComp"
 import "./Authentication.css"
 import axios from "axios"
 
@@ -8,6 +9,7 @@ const Register = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [open, setOpen] = useState(false);
     const [error, setError] = useState('')
     let history = useHistory();
     const { setLogin, setActiveUser } = useContext(UserContext);
@@ -15,7 +17,6 @@ const Register = () => {
     const handleSubmit = async e => {
 
         try {
-
             e.preventDefault();
             await axios.post("http://localhost:3001/registerUser", { username, password })
             setLogin(true)
@@ -23,14 +24,17 @@ const Register = () => {
             history.push(`/dashboard/${username}`)
 
         } catch (err) {
-
             setError(err.response.data)
+            setOpen(true)
             setUsername('')
             setPassword('')
 
         }
     }
 
+    const handleClose = () => {
+        setOpen(false)
+    };
 
     return (
         <div className="auth-form">
@@ -61,7 +65,14 @@ const Register = () => {
                     <button className="submit-auth"> Register! </button>
                 </div>
             </form>
-            {error ? <div>{error}</div> : null} {/* should be refined */}
+            {error &&
+                <DialogComp
+                    isOpen={open}
+                    onCloseHandle={handleClose}
+                    title="User already exists"
+                    content={"Please sign in instead."}
+                    okButton={false}
+                />}
         </div>
     )
 }

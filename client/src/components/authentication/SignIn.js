@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from "../../utils/UserContext"
+import DialogComp from "../../utils/DialogComp"
 import axios from "axios"
 import "./Authentication.css"
 
@@ -9,6 +10,7 @@ const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [open, setOpen] = useState(false);
     let history = useHistory();
 
     const { setLogin, setActiveUser } = useContext(UserContext);
@@ -16,7 +18,6 @@ const SignIn = () => {
     const handleSubmit = async e => {
 
         try {
-
             e.preventDefault();
             await axios.post("http://localhost:3001/signInUser", { username, password })
             setLogin(true)
@@ -25,11 +26,15 @@ const SignIn = () => {
 
         } catch (err) {
             setError(err.response.data)
+            setOpen(true)
             setUsername('')
             setPassword('')
         }
     }
 
+    const handleClose = () => {
+        setOpen(false)
+    };
 
     return (
         <div className="auth-form">
@@ -60,7 +65,14 @@ const SignIn = () => {
                 <button className="submit-auth">Login!</button>
             </form>
 
-            {error ? <div>{error}</div> : null} {/* should be refined */}
+            {error &&
+                <DialogComp
+                    isOpen={open}
+                    onCloseHandle={handleClose}
+                    title={error}
+                    content={null}
+                    okButton={false}
+                />}
         </div>
     )
 }
