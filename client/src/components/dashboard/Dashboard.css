@@ -173,4 +173,11 @@
     letter-spacing: 0.05em;
   }
 
-
+span.material-icons {
+  font-size: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  vertical-align: text-bottom;
+}

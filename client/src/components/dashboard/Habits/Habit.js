@@ -5,7 +5,7 @@ import Day from "./Day"
 import DialogComp from '../../../utils/DialogComp'
 import { UserContext } from '../../../utils/UserContext'
 import axios from "axios";
-// import Icon from '@material-ui/core/Icon'
+import Icon from '@material-ui/core/Icon'
 
 const Habit = (props) => {
     const [error, setError] = useState('')
@@ -53,8 +53,9 @@ const Habit = (props) => {
                     {props.pastDays.map((d, i) => (
                         <Day day={d.date} colour={props.colour} completed={d.completed} key={i} onChangeCompleted={changeCompleted} error={error} />
                     ))}
+                <Icon className="trashcan">delete</Icon>
                 </div> 
-                <div onClick={onClickDelete}>Delete Habit</div>
+                {/* <div onClick={onClickDelete}>Delete Habit</div> */}
                 {remove &&                 
                 <DialogComp
                     isOpen={open}
