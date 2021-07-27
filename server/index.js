@@ -8,8 +8,8 @@ const mongoose = require("mongoose")
 const api = require("../server/api/api")
 
 const dbConnectionOpts = {
-  // socketTimeoutMS: 0,
-  // connectTimeoutMS: 0,
+  socketTimeoutMS: 0,
+  connectTimeoutMS: 0,
   useCreateIndex: true,
   useNewUrlParser: true,
   useFindAndModify: false,
