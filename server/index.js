@@ -43,6 +43,6 @@ process.env.ENV === "DEV" ? null : app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log('Listening on 3001...');
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Listening on 3000...');
 });
