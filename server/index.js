@@ -44,6 +44,6 @@ process.env.ENV === "DEV" ? null : app.get('*', function (req, res) {
 });
 
 mongoose.connect(`${dbConnectionString}`, dbConnectionOpts).catch(err => console.log(`Connection err: ${err}`))
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Listening on 3000...');
+app.listen(process.env.PORT || 3001, () => {
+  console.log('Listening on 3001...');
 });
