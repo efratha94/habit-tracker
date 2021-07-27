@@ -35,7 +35,7 @@ router.post("/signInUser", async (req, res) => {
         }
     } catch (err) {
         //should refine it
-        res.status(400).send(err.message)
+        res.status(400).send(err)
     }
 })
 
