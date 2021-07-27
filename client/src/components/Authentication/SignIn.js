@@ -26,7 +26,7 @@ const SignIn = () => {
             history.push(`/dashboard/${username}`)
 
         } catch (err) {
-            setError(err)
+            setError(err.response.data)
             setOpen(true)
             setUsername('')
             setPassword('')
