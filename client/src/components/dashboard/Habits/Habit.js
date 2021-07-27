@@ -22,8 +22,8 @@ const Habit = (props) => {
                 date: date,
                 completed: status
             }
-
-            await axios.post("http://localhost:3001/updatehabit", habitData)
+            const envURL = process.env.NODE_ENV === "development" ? "http://localhost:3001/updatehabit" : "/updatehabit"
+            await axios.post(envURL, habitData)
 
         } catch (err) {
             setError(err.response.data)

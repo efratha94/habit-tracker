@@ -8,7 +8,8 @@ const Habits = (props) => {
 
     const deleteHabit = async (user, habit) => {
         try {
-            await axios.delete(`http://localhost:3001/deleteHabit/${user}/${habit}`)
+            const envURL =  process.env.NODE_ENV === "development" ? `http://localhost:3001/deleteHabit/${user}/${habit}` : `/deleteHabit/${user}/${habit}`
+            await axios.delete(envURL)
             props.onDeleteHabit(habit)
         } catch (err) {
             console.log(err)

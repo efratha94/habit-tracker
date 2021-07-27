@@ -6,6 +6,7 @@ import NewHabit from './NewHabits/NewHabit'
 import { UserContext } from '../../utils/UserContext'
 import "./Dashboard.css"
 
+
 const Dashboard = () => {
     const [habits, setHabits] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -33,7 +34,8 @@ const Dashboard = () => {
     useEffect(() => {
         setIsLoading(true)
         const getHabits = async () => {
-            const listOfHabits = await axios.get(`http://localhost:3001/habits/${activeUser}`)
+            const envURL = process.env.NODE_ENV === "development" ? `http://localhost:3001/habits/${activeUser}` : `/habits/${activeUser}`
+            const listOfHabits = await axios.get(envURL)
             setHabits(listOfHabits.data)
             setIsLoading(false)
         }

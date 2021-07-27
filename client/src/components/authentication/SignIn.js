@@ -19,7 +19,8 @@ const SignIn = () => {
 
         try {
             e.preventDefault();
-            await axios.post("http://localhost:3001/signInUser", { username, password })
+            const envURL = process.env.NODE_ENV === "development" ? "http://localhost:3001/signInUser" : "/signInUser"
+            await axios.post(envURL, { username, password })
             setLogin(true)
             setActiveUser(username)
             history.push(`/dashboard/${username}`)

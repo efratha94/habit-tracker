@@ -18,7 +18,8 @@ const Register = () => {
 
         try {
             e.preventDefault();
-            await axios.post("http://localhost:3001/registerUser", { username, password })
+            const envURL = process.env.NODE_ENV === "development" ? "http://localhost:3001/registerUser" : "/registerUser"
+            await axios.post(envURL, { username, password })
             setLogin(true)
             setActiveUser(username)
             history.push(`/dashboard/${username}`)

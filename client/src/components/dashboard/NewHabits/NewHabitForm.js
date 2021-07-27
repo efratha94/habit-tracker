@@ -16,8 +16,8 @@ const NewHabitForm = (props) => {
     const submitHandler = async e => {
         try {
             e.preventDefault()
-
-            let resp = await axios.post('http://localhost:3001/newhabit', { habit, activeUser })
+            const envURL = process.env.NODE_ENV === "development" ? 'http://localhost:3001/newhabit' : '/newhabit'
+            let resp = await axios.post(envURL, { habit, activeUser })
             props.onSaveNewHabit(resp.data)
         } catch (err) {
             console.log(err)
