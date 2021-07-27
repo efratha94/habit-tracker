@@ -24,7 +24,6 @@ const corsFunc = function (req, res, next) {
  next()
 }
 
-mongoose.connect(`${dbConnectionString}`, dbConnectionOpts)
 
 process.env.ENV === "DEV" ? null : app.use(express.static(path.resolve(__dirname, '../client/build')));
 
@@ -44,6 +43,6 @@ process.env.ENV === "DEV" ? null : app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Listening on 3000...');
-});
+mongoose.connect(`${dbConnectionString}`, dbConnectionOpts).then(() => {
+  app.listen(process.env.PORT || 3000, () => console.log('Listening on 3000...'));
+}).catch(err => console.log(`Err trying to connect to DB: ${err}`))
