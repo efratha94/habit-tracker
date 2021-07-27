@@ -43,6 +43,7 @@ process.env.ENV === "DEV" ? null : app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
-mongoose.connect(`${dbConnectionString}`, dbConnectionOpts).then(() => {
-  app.listen(process.env.PORT || 3000, () => console.log('Listening on 3000...'));
-}).catch(err => console.log(`Err trying to connect to DB: ${err}`))
+mongoose.connect(`${dbConnectionString}`, dbConnectionOpts)
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Listening on 3000...');
+});
