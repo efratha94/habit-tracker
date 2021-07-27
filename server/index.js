@@ -1,12 +1,11 @@
-require('dotenv').config({ path: '../.env' });
-const dbConnectionString = process.env.ENV === "DEV" ? process.env.MONGO_CONNECTION_STRING : process.env.ATLAS_CONNECTION_STRING
+const path = require("path")
+require('dotenv').config({ path: path.join(path.resolve(), "./.env") });
+const dbConnectionString = process.env.ATLAS_CONNECTION_STRING //process.env.ENV === "DEV" ? process.env.MONGO_CONNECTION_STRING :
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const path = require("path")
 const mongoose = require("mongoose")
 const api = require("../server/api/api")
-
 
 const dbConnectionOpts = {
   // socketTimeoutMS: 0,
@@ -44,7 +43,7 @@ process.env.ENV === "DEV" ? null : app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
-mongoose.connect(`${dbConnectionString}`, dbConnectionOpts)
+mongoose.connect(`${dbConnectionString}`, dbConnectionOpts).catch(err => console.log(`Connection err: ${err}`))
 app.listen(process.env.PORT || 3000, () => {
   console.log('Listening on 3000...');
 });
