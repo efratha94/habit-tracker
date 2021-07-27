@@ -1,6 +1,6 @@
 const path = require("path")
 require('dotenv').config({ path: path.join(path.resolve(), "./.env") });
-const dbConnectionString = process.env.ATLAS_CONNECTION_STRING //process.env.ENV === "DEV" ? process.env.MONGO_CONNECTION_STRING :
+const dbConnectionString = process.env.ENV === "DEV" ? process.env.MONGO_CONNECTION_STRING : process.env.ATLAS_CONNECTION_STRING
 const cors = require('cors');
 const express = require('express');
 const app = express();
