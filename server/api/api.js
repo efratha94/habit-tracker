@@ -109,7 +109,6 @@ router.get("/habits/:username", async (req, res) => {
 })
 
 router.post("/updatehabit", async (req, res) => {
-    console.log(req.body)
 
     try {
         const findUser = await User.findOne({ username: req.body.user })
@@ -119,7 +118,8 @@ router.post("/updatehabit", async (req, res) => {
         const currWeek = findHabit.pastDays.filter(week => week.weekNumber === req.body.weekNumber)[0].weekDates
         const currDay = currWeek.filter(day => day.date === req.body.date)[0]
         currDay.completed = req.body.completed
-        findHabit.save()
+        await findHabit.save()
+        // console.log("findHabit", findHabit.pastDays[0].weekDates)
         res.status(200).send("OK")
 
     } catch (err) {

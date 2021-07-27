@@ -36,6 +36,7 @@ const Dashboard = () => {
         const getHabits = async () => {
             const envURL = process.env.NODE_ENV === "development" ? `http://localhost:3001/habits/${activeUser}` : `/habits/${activeUser}`
             const listOfHabits = await axios.get(envURL)
+            // console.log("listOfHabits.data", listOfHabits.data)
             setHabits(listOfHabits.data)
             setIsLoading(false)
         }

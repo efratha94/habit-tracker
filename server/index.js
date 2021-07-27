@@ -14,8 +14,18 @@ const dbConnectionOpts = {
   useFindAndModify: false,
   useUnifiedTopology: true
 };
-// console.log(process.env.ATLAS_PASS, dbConnectionString, process.env.ATLAS_CONNECTION_STRING)
+
+const corsFunc = function (req, res, next) {
+ res.header('Access-Control-Allow-Origin', '*')
+ res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+ res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+
+ next()
+}
+
 mongoose.connect(`${dbConnectionString}`, dbConnectionOpts)
+
+process.env.ENV === "DEV" ? null : app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.use(cors());
 app.use(express.json())
@@ -23,15 +33,15 @@ app.use(express.urlencoded({extended: false}))
 
 
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
 
-  next()
-})
+process.env.ENV === "DEV" ? app.use(corsFunc) : null
 
 app.use("/", api)
+
+
+process.env.ENV === "DEV" ? null : app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.listen(process.env.PORT || 3001, () => {
   console.log('Listening on 3001...');
