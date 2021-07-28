@@ -59,7 +59,7 @@ const Register = () => {
                             name="password"
                             required
                             onChange={e => setPassword(e.target.value)}
-                            type="text"
+                            type="password"
                         />
                     </div>
 
