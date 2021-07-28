@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+    server:
+        env_file:
+            "./.env"
+        build:
+            context: ./server
+            dockerfile: ./Dockerfile
+        image: "efratha94/habit-tracker-back"
+        ports:
+            - "3001:3001"
+        depends_on:
+            - mongo
+    client:
+        build:
+            context: ./client
+            dockerfile: ./Dockerfile
+        image: "efratha94/habit-tracker-front"
+        ports:
+            - "3000:3000"
+        depends_on:
+            - server
+    mongo:
+        image: mongo
+        ports:
+            - '27017:27017'
