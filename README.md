@@ -3,6 +3,8 @@ It's hosted on heroku so you can check it out here: https://efratha94-habit-trac
 
 After you add a habit to track, you can click on the date and mark it as completed.
 
+To run the app locally, make sure MongoDB is running locally already (with the command 'mongod') and then run: 'ENV=DEV MONGO_CONNECTION_STRING=mongodb://localhost/habit-tracker npm run dev'
+
 TBD:
  - [ ] Password hashing (at the moment it's not implemented, so I can see your passwords. Choose wisely)
  - [ ] Better errors from DB (adding a switch statement for common errors and showing readable errors instead of errors as they're received from db)
