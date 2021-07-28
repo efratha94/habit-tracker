@@ -5,7 +5,7 @@ After you add a habit to track, you can click on the date and mark it as complet
 
 TBD:
  - [x] Hiding passwords (12345 --> *****)
- - Password hashing (at the moment it's not implemented, so I can see your passwords. Choose wisely)
+ - [ ] Password hashing (at the moment it's not implemented, so I can see your passwords. Choose wisely)
  - Redirecting to Sign In page upon registration error message that user already exists
  - Cookies and sessions (You'll be logged out upon refresh)
  - Choosing dates and calendar view 
